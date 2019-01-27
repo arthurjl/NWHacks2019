@@ -20,6 +20,6 @@ usernameField.send_keys('itsarthurliu')
 passwordField.send_keys('ryanmvp')
 
 # Find login button
-loginButton = WebDriverWait(browser, 10).until(EC.presence_of_element_located((By.LINK_TEXT, 'Log in')))
-loginButton.click();
+loginButton = WebDriverWait(browser, 10).until(EC.presence_of_element_located((By.XPATH, '//button[text()="Log in"]')))
+loginButton.click()
 
