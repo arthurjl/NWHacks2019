@@ -1,4 +1,10 @@
 {% extends "layout.html" %}
 {% block content %}
-  {<img src="/plot.png" alt="my plot">}
-{% endblock %}
+	{% for post in posts %}
+		<div class="row">
+			<div class="col-6 text-center">
+				<img src= "{{ post.src }} "/>
+			</div
+        </div>  
+    {% endfor %}
+{% endblock content %}
