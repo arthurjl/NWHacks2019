@@ -4,7 +4,7 @@ from PIL import Image
 import requests
 from io import BytesIO
 import matplotlib.pyplot as plt
-from InstragramDataScraping import get_data
+from InstagramDataScraping import get_data
 
 G=nx.star_graph(0)
 
