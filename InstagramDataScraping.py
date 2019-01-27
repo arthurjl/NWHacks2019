@@ -17,8 +17,8 @@ usernameField = WebDriverWait(browser, 10).until(EC.presence_of_element_located(
 # Find password field
 passwordField = WebDriverWait(browser, 10).until(EC.presence_of_element_located((By.NAME, 'password')))
 
-usernameField.send_keys('eatsbyjake')
-passwordField.send_keys('ryantruemvp')
+usernameField.send_keys('LETZy33tTHEWh34t')
+passwordField.send_keys('arthuristhenewjake')
 
 # Find login button
 loginButton = WebDriverWait(browser, 10).until(EC.presence_of_element_located((By.XPATH, '//button[text()="Log in"]')))
@@ -38,10 +38,10 @@ names = WebDriverWait(browser, 10).until(EC.presence_of_all_elements_located((By
 for name in names:
 	nameList.append(name.get_attribute("title"))
 
-likesList = []
+likedList = []
 hearts = WebDriverWait(browser, 10).until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, "article div section div a > span")))
 for heart in hearts:
-	likedList.append(heart)
+	likedList.append(heart.text)
 
 print(srcList)
 print(len(srcList))
@@ -49,3 +49,11 @@ print(nameList)
 print(len(nameList))
 print(likedList)
 print(len(likedList))
+
+
+# for element in self.driver.find_elements_by_tag_name('img'):
+#        print element.text
+#        print element.tag_name
+#        print element.parent
+#        print element.location
+#        print element.size
