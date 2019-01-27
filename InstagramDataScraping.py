@@ -43,12 +43,29 @@ hearts = WebDriverWait(browser, 10).until(EC.presence_of_all_elements_located((B
 for heart in hearts:
 	likedList.append(heart.text)
 
+while (len(likedList) < len(srcList)):
+	likedList.append("n/a")
+
+
 print(srcList)
 print(len(srcList))
 print(nameList)
 print(len(nameList))
 print(likedList)
 print(len(likedList))
+
+postList = []
+for i in range(len(srcList)):
+	thisdict =	{
+		"src": srcList[i],
+		"poster": nameList[i],
+		"likes": likedList[i]
+	}
+	postList.append(thisdict)
+
+print(postList)
+
+
 
 
 # for element in self.driver.find_elements_by_tag_name('img'):
