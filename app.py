@@ -20,9 +20,9 @@ G=nx.star_graph(0)
 
 app = Flask(__name__)
 
+posts = get_data()
 @app.route('/')
 def home():
-	posts = get_data()
 	return render_template('index.html', posts = posts)
 	
 

@@ -29,20 +29,17 @@ def get_data():
 	# grab by css selector
 	# article > image
 
-
-	for i in range(3):
-		srcList = []
+	srcList, nameList, likedList = [], [], []
+	for i in range(1):
 		time.sleep(5)
 		pictures = WebDriverWait(browser, 10).until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, "article > div img")))
 		for picture in pictures:
 			srcList.append(picture.get_attribute("src"))
 
-		nameList = []
 		names = WebDriverWait(browser, 10).until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, "article header h2 > a")))
 		for name in names:
 			nameList.append(name.get_attribute("title"))
-
-		likedList = []
+	
 		hearts = WebDriverWait(browser, 10).until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, "article div section div a > span")))
 		# article > div > section > div > span > span (temp new selector)
 
@@ -56,7 +53,9 @@ def get_data():
 		htmlElem = browser.find_element_by_tag_name('html')
 		htmlElem.send_keys(Keys.END)
 
-
+	print(len(srcList))
+	print(len(nameList))
+	print(len(likedList))
 
 
 	postList = []
