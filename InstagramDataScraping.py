@@ -7,6 +7,7 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.common.keys import Keys
 
 browser = webdriver.Firefox()
 browser.get('https://www.instagram.com/accounts/login/?source=auth_switcher')
@@ -27,32 +28,42 @@ loginButton.click()
 # grab by css selector
 # article > image
 
-srcList = []
-time.sleep(5)
-pictures = WebDriverWait(browser, 10).until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, "article > div img")))
-for picture in pictures:
-	srcList.append(picture.get_attribute("src"))
 
-nameList = []
-names = WebDriverWait(browser, 10).until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, "article header h2 > a")))
-for name in names:
-	nameList.append(name.get_attribute("title"))
+for i in range(3):
+	srcList = []
+	time.sleep(5)
+	pictures = WebDriverWait(browser, 10).until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, "article > div img")))
+	for picture in pictures:
+		srcList.append(picture.get_attribute("src"))
 
-likedList = []
-hearts = WebDriverWait(browser, 10).until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, "article div section div a > span")))
-for heart in hearts:
-	likedList.append(heart.text)
+	nameList = []
+	names = WebDriverWait(browser, 10).until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, "article header h2 > a")))
+	for name in names:
+		nameList.append(name.get_attribute("title"))
 
-while (len(likedList) < len(srcList)):
-	likedList.append("n/a")
+	likedList = []
+	hearts = WebDriverWait(browser, 10).until(EC.presence_of_all_elements_located((By.CSS_SELECTOR, "article div section div a > span")))
+	# article > div > section > div > span > span (temp new selector)
+
+	# article div section div a > span (old selector for likes)
+	for heart in hearts:
+		likedList.append(heart.text)
+
+	while (len(likedList) < len(srcList)):
+		likedList.append("n/a")
+
+	print(srcList)
+	print(len(srcList))
+	print(nameList)
+	print(len(nameList))
+	print(likedList)
+	print(len(likedList))
+
+	htmlElem = browser.find_element_by_tag_name('html')
+	htmlElem.send_keys(Keys.END)
 
 
-print(srcList)
-print(len(srcList))
-print(nameList)
-print(len(nameList))
-print(likedList)
-print(len(likedList))
+
 
 postList = []
 for i in range(len(srcList)):
@@ -65,6 +76,8 @@ for i in range(len(srcList)):
 
 print(postList)
 
+for src in postList:
+	webbrowser.open(postList[i].get('src'))
 
 
 
